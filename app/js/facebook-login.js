@@ -21,19 +21,7 @@ $('.fa-login').click(function(){
       FB.login(function(response) {
          if (response.authResponse) {
            console.log('Welcome!  Fetching your information.... ');
-           FB.api( {
-              method: 'fql.query',
-              query: 'SELECT name, pic_square, email, username FROM user WHERE uid='+FB.getUserID()
-            },
-            function(response) {
-              //Log.info('API Callback', response);
-              $('.fb-info-container').html(
-                '<img src="' + response[0].pic_square + '"> ' +
-                response[0].name + '<br>'  + response[0].email + response[0].username +
-                ' <button class="btn" onclick="FB.logout()">Logout</button>'
-              );
-              console.log($(response[0]));
-            });
+           signInAndFetchResult();
 
          } else {
            console.log('User cancelled login or did not fully authorize.');
@@ -45,19 +33,7 @@ $('.fa-login').click(function(){
       FB.login(function(response) {
          if (response.authResponse) {
            console.log('Welcome!  Fetching your information.... ');
-           FB.api( {
-              method: 'fql.query',
-              query: 'SELECT name, pic_big, email, username FROM user WHERE uid='+FB.getUserID()
-            },
-            function(response) {
-              //Log.info('API Callback', response);
-              $('.fb-info-container').html(
-                '<img src="' + response[0].pic_big + '"> ' +
-                response[0].name + '<br>'  + response[0].email + response[0].username +
-                ' <button class="btn" onclick="FB.logout()">Logout</button>'
-              );
-              console.log($(response[0]));
-            });
+           signInAndFetchResult();
 
          } else {
            console.log('User cancelled login or did not fully authorize.');
@@ -67,7 +43,7 @@ $('.fa-login').click(function(){
       // the user isn't logged in to Facebook.
       FB.login(function(response) {
          if (response.authResponse) {
-          testAPI();
+          signInAndFetchResult();
          } else {
            console.log('User cancelled login or did not fully authorize.');
          }
@@ -75,6 +51,22 @@ $('.fa-login').click(function(){
     }
   });  
 });
+}
+
+function signInAndFetchResult(){
+  FB.api( {
+    method: 'fql.query',
+    query: 'SELECT name, pic_square, email, username FROM user WHERE uid='+FB.getUserID()
+  },
+  function(response) {
+    //Log.info('API Callback', response);
+    $('.fb-info-container').html(
+      '<img src="' + response[0].pic_square + '"> ' +
+      response[0].name + '<br>'  + response[0].email + response[0].username +
+      ' <button class="btn" onclick="FB.logout()">Logout</button>'
+    );
+    console.log($(response[0]));
+  });
 }
  
 function testAPI() {

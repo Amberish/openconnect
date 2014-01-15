@@ -31,13 +31,30 @@
 				<h4>-- OR --</h4>
 				<br>
 				<p>Connect throught Facebook or Google</p><br>
+				
+				<!-- Facebook Button Scripts -->
 				<script type="text/javascript" src="//connect.facebook.net/en_US/all.js"></script>
 				<script type="text/javascript" src="<?php echo JS;?>/facebook-login.js"></script>
 				<button class="btn btn-facebook btn-md fa-login"><i class="fa fa-facebook"></i> | Connect with Facebook</button>&nbsp; or &nbsp;
-				<button class="btn btn-google-plus btn-md"><i class="fa fa-google-plus"></i> | Connect with Google Plus</button>
+				<!-- End facebook Button Scripts -->
+
+				<!-- Google Button Scripts -->
+				<button class="g-signin btn btn-google-plus btn-md"
+					    data-callback="signinCallback"
+					    data-clientid="1041645441787-42ltm6m0eq8ooko3j63olt2b7rq4cl82.apps.googleusercontent.com"
+					    data-cookiepolicy="single_host_origin"
+					    data-requestvisibleactions="http://schemas.google.com/AddActivity"
+					    data-scope="https://www.googleapis.com/auth/plus.login">
+					    <i class="fa fa-google-plus"></i> | Connect with Google Plus
+			    </button>
+			    <script type="text/javascript" src="<?php echo JS;?>/google-plus-login.js"></script>
+				<!-- End Google Button Scripts -->
+
+				<!-- Facebook Output container -->
 				<div class="fb-info-container">
 					
 				</div>
+				<!-- End Facebook Output Container -->
 			</div>
 		</div>
 	</div>
