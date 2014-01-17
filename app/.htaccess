@@ -3,7 +3,15 @@ RewriteRule    ^/?$                                ./index.php    [NC,L]
 RewriteRule    ^course/([a-zA-Z]+)/([0-9]+)/?$    ./index.php?page_requested=course&course_category=$1&course_id=$2    [NC,L]
 RewriteRule    ^author/([a-zA-Z0-9]+)/?$         ./index.php?page_requested=author&author_uname=$1    [NC,L] 
 RewriteRule    ^create_account/?$                ./index.php?page_requested=create_account    [NC,L]
-RewriteRule    ^([a-zA-Z0-9]+)/?$                ./index.php?page_requested=$1    [NC,L]
+RewriteRule    ^([a-zA-Z0-9\-]+)/?$              ./index.php?page_requested=$1    [NC,L]
+
+#imposing restriction on js/css/img/scripts/templates/vendor folders(level 1)
+#RewriteRule    ^(js|css|img|scripts|templates|vendor)/([a-zA-Z0-9\-.]+)?$   ./index.php?page_requested=not_found    [NC,L]
+
+#imposing restriction on scripts (level 2)
+#RewriteRule    ^(scripts/([a-zA-Z0-9\-_]+))/([a-zA-Z0-9\-.]+)?$     ./index.php?page_requested=not_found    [NC,L]
+#imposing restriction on templates (level 2)
+#RewriteRule    ^(templates/([a-zA-Z0-9\-_]+))/([a-zA-Z0-9\-.]+)?$     ./index.php?page_requested=not_found    [NC,L]
 
 RewriteRule    ^404/page_not_found/?$            ./page_not_found.php    [NC,L] 
 ErrorDocument   404                              http://localhost/openconnect/app/404/page_not_found/

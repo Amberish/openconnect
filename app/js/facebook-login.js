@@ -43,15 +43,22 @@ function sigInAndGetUserInfo(){
          console.log('Welcome!  Fetching your information.... ');
          FB.api( {
             method: 'fql.query',
-            query: 'SELECT name, pic_big, email, username FROM user WHERE uid='+FB.getUserID()
+            query: 'SELECT name, pic_square, email, username, profile_url FROM user WHERE uid='+FB.getUserID()
           },
           function(response) {
             //Log.info('API Callback', response);
-            $('.fb-info-container').html(
-              '<img src="' + response[0].pic_big + '"> ' +
+            $('#so-username').val(response[0].username);
+            $('#so-fullname').val(response[0].name);
+            $('#so-email').val(response[0].email);
+            $('#so-profile-url').val(response[0].profile_url);
+            $('#so-image-loc').val(response[0].pic_square);
+            $('#so-signup-method').val("Facebook");
+            $('.form-sending-info').submit();
+            /*$('.fb-info-container').html(
+              '<img src="' + response[0].pic_square + '"> ' +
               response[0].name + '<br>'  + response[0].email + response[0].username +
               ' <button class="btn" onclick="FB.logout()">Logout</button>'
-            );
+            );*/
             console.log($(response[0]));
           });
 

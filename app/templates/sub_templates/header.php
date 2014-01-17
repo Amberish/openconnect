@@ -28,7 +28,7 @@
 
 		  <div class="col-lg-2">
 		  	<?php
-				if($page_requested != "signup" && $page_requested != "signin"){
+				if($page_requested != "signup" && $page_requested != "signin" && $page_requested != "signup-third-party"){
 			?>
 			<div class="navbar-right">
 				<a href="<?php echo WEB_ROOT; ?>/signin/" class="btn btn-primary navbar-btn">Sign In</a>

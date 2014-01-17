@@ -44,12 +44,32 @@
 				<h4>-- OR --</h4>
 				<br>
 				<p>Connect throught Facebook or Google</p><br>
+
+				<!-- Facebook Button Scripts -->
 				<script type="text/javascript" src="//connect.facebook.net/en_US/all.js"></script>
 				<script type="text/javascript" src="<?php echo JS;?>/facebook-login.js"></script>
 				<button class="btn btn-facebook btn-md fa-login"><i class="fa fa-facebook"></i> | Connect with Facebook</button>&nbsp; or &nbsp;
+				<!-- End facebook Button Scripts -->
+
+				<!-- Google Button Scripts -->
 				<button class="btn btn-google-plus btn-md"><i class="fa fa-google-plus"></i> | Connect with Google Plus</button>
+			    <script type="text/javascript" src="<?php echo JS;?>/google-plus-login.js"></script>
+				<!-- End Google Button Scripts -->
+
+				<!-- Facebook Output container -->
 				<div class="fb-info-container">
 					
+				</div>
+				<!-- End Facebook Output Container -->
+				
+				<form class="form-sending-info" method="POST" action="<?php echo WEB_ROOT;?>/signup-third-party/">
+					<input type="hidden" value="" id="so-username" name="username">
+					<input type="hidden" value="" id="so-fullname" name="fullname">
+					<input type="hidden" value="" id="so-email" name="email">
+					<input type="hidden" value="" id="so-profile-url" name="profile-url">
+					<input type="hidden" value="" id="so-image-loc" name="image-loc">
+					<input type="hidden" value="" id="so-signup-method" name="signup-method">
+				</form>	
 				</div>
 			</div>
 		</div>
