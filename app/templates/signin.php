@@ -15,14 +15,14 @@
 			<div class="col-md-4 login-form well">
 				<h2>Sign In</h2>
 				<hr>
-				<form method="POST">
+				<form method="POST" name="signin-form">
 					
-					<input type="text" name="username" id="input-username" placeholder="Username" class="form-control">
+					<input type="text" name="username" id="input-username-signin" placeholder="Username or Email" class="form-control">
 					<br>
 					
-					<input type="password" name="password" id="input-password" placeholder="Password" class="form-control">
+					<input type="password" name="password" id="input-password-signin" placeholder="Password" class="form-control">
 					<br>
-					<input type="submit" value="Sign In" class="btn btn-primary btn-block"><br><span><a href="#">Forgot Password?</a></span>
+					<input type="submit" value="Sign In" id="signin" class="btn btn-primary btn-block"><br><span><a href="#">Forgot Password?</a></span>
 					<br><br>
 					<p>Don't have an Account? <a href="<?php echo WEB_ROOT;?>/signup">Create Account</a></p>
 				</form>

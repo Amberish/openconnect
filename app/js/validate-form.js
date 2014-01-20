@@ -135,14 +135,10 @@ ValidateRegistrationForm.prototype = {
 			case "confirm-password" :
 						return this.compPass(fieldValue);
 		}
-	},
-
-	validateElements : function(formObj){
-		
 	}
 };
 
-function checkAllElements(regFormObj, field, elObj){
+function checkSignupElement(regFormObj, field, elObj){
 	
 		var errClassName = "err-" + field; 
 		if(!regFormObj.checkField(field, elObj.val())){		
@@ -150,17 +146,16 @@ function checkAllElements(regFormObj, field, elObj){
 				var el = jQ("<p style='margin: 0px;' class='alert alert-danger " + errClassName + "'><small></small></p>");
 				el.find('small').html(regFormObj.getErr());
 				elObj.after(el);
-				regFormObj.errCount++;
 			}else if(jQ('.' + errClassName).text() != regFormObj.getErr()){
 				jQ('.' + errClassName).find('small').html(regFormObj.getErr());
 			}
+			regFormObj.errCount++;
 		}else{
 			if(field == "fullname"){
 				if(!jQ('.welcome-msg').length){	
 					var el = jQ("<p style='margin: 0px;' class='alert alert-success welcome-msg'><small></small></p>");
 					el.find('small').html(regFormObj.getWelcomeMsg());
 					elObj.after(el);
-					regFormObj.errCount++;
 				}else if(jQ('.welcome-msg').text() != regFormObj.getWelcomeMsg()){
 					jQ('.welcome-msg').find('small').html(regFormObj.getWelcomeMsg());
 				}
@@ -183,23 +178,116 @@ jQuery(document).ready(function(jQ){
 	jQ.each(fields, function(index, field){
 		jQ('#input-' + field).blur(function(){
 			var elObj = jQ(this); /*Current element to inspect.*/
-			checkAllElements(regFormObj, field, elObj);
+			checkSignupElement(regFormObj, field, elObj);
 		});
 	});	
 
 	/*When someone tries to submit for without filling details*/
 	jQ('#sign-up').click(function(e){
 		e.preventDefault();
+		console.log(regFormObj.errCount);
 		if(regFormObj.errCount == 0){
+
 			var regFormObj2 = new ValidateRegistrationForm();
 			jQ.each(fields, function(index, field){
 				var elObj = jQ('#input-' + field);
-				checkAllElements(regFormObj2, field, elObj);
+				checkSignupElement(regFormObj2, field, elObj);
 			});
 			console.log(regFormObj2.errCount);
-			/*if(regFormObj2.errCount == 0){
+			if(regFormObj2.errCount == 0){
 				jQ('form[name="signup-form"]').submit();	
-			}*/		 	
+			}		 	
 		}
 	});
+});
+
+
+
+
+ValidateLoginForm = Class.create();
+
+ValidateLoginForm.prototype = {
+	initialize : function(){
+		this.errCount = 0;
+	},
+
+	setErr : function(error){
+		this.err = error;
+	},
+
+	getErr : function(){
+		return this.err;
+	},
+
+	checkUnameEmail : function(fieldValue){
+		if(fieldValue != ""){
+			this.uname = fieldValue;
+			return true;
+		}else{
+			this.setErr("Username or Email can't be blank!");
+			return false;
+		}
+	},
+
+	checkPassword : function(pass){
+		if(pass != ""){
+			this.pass = pass;
+			return true;
+		}else{
+			this.setErr("Password can't be blank!");
+			return false;
+		}
+	},
+
+	checkField : function(fieldName, fieldValue){
+		switch(fieldName){
+			case "username":
+				return this.checkUnameEmail(fieldValue);
+			case "password":
+				return this.checkPassword(fieldValue);
+		}
+	}
+}
+
+function checkSigninElement(signinFormObj, field, elObj){
+	var errClassName = "err-" + field; 
+	if(!signinFormObj.checkField(field, elObj.val())){		
+		if(!jQ('.' + errClassName).length){	
+			var el = jQ("<p style='margin: 0px;' class='alert alert-danger " + errClassName + "'><small></small></p>");
+			el.find('small').html(signinFormObj.getErr());
+			elObj.after(el);
+		}else if(jQ('.' + errClassName).text() != signinFormObj.getErr()){
+			jQ('.' + errClassName).find('small').html(signinFormObj.getErr());
+		}
+		signinFormObj.errCount++;
+	}else{
+		jQ('.' + errClassName).remove();
+
+		if(signinFormObj.errCount != 0)
+			signinFormObj.errCount--;
+	}
+}
+
+jQ(document).ready(function(){
+	var signinFields = ["username", "password"];
+	var signinFormObj = new ValidateLoginForm();
+
+	/*This is for individual element check on blur.*/
+	jQ.each(signinFields, function(index, field){
+		jQ('#input-' + field + '-signin').blur(function(){
+			var elObj = jQ(this); /*Current element to inspect.*/
+			checkSigninElement(signinFormObj, field, elObj);
+		});
+	});
+
+	jQ('#signin').click(function(e){
+		e.preventDefault();				
+		jQ.each(signinFields, function(i, field){
+			var elObj = jQ("#input-" + field + "-signin");
+			checkSigninElement(signinFormObj, field, elObj);
+		});
+		if(signinFormObj.errCount == 0){
+			jQ('form[name="signin-form"]').submit();	
+		}	
+	});	
 });

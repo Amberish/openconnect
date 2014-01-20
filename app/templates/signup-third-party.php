@@ -15,7 +15,7 @@
 			<div class="col-md-4 login-form well">
 				<h2>Sign Up</h2>
 				<hr>
-				<form method="POST" name="sign-up">
+				<form method="POST" name="signup-form">
 					
 					<input type="text" name="fullname" id="input-fullname" value="<?php echo $_POST['fullname'];?>" placeholder="Fullname" class="form-control">
 					<br>
