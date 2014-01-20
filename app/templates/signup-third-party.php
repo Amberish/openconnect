@@ -15,7 +15,7 @@
 			<div class="col-md-4 login-form well">
 				<h2>Sign Up</h2>
 				<hr>
-				<form method="POST">
+				<form method="POST" name="sign-up">
 					
 					<input type="text" name="fullname" id="input-fullname" value="<?php echo $_POST['fullname'];?>" placeholder="Fullname" class="form-control">
 					<br>
@@ -29,13 +29,13 @@
 					<input type="password" name="password" id="input-password" placeholder="Password" class="form-control">
 					<br>
 					
-					<input type="text" name="confirm_password" id="input-confirm-password" placeholder="Confirm Password" class="form-control">
+					<input type="password" name="confirm_password" id="input-confirm-password" placeholder="Confirm Password" class="form-control">
 					<br>
 
 					<input type="checkbox" name="terms-and-condition" > I agree the <a href="#">Terms and Services</a>
 					<br><br>
 
-					<input type="submit" value="Sign Up" class="btn btn-success btn-block"> 
+					<input type="submit" value="Sign Up" id="sign-up" class="btn btn-success btn-block"> 
 					<br>
 					<input type="hidden" name="image-loc" value="<?php echo $_POST['image-loc'];?>" >
 				</form>

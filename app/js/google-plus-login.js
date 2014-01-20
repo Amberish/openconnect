@@ -1,11 +1,15 @@
 <!-- Place this asynchronous JavaScript just before your </body> tag -->
+/*Use jQ in place of $*/
+jQuery(document).ready(function(jQ){
 (function() {
 var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
 po.src = 'https://apis.google.com/js/client:plusone.js';
 var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
 })();
 
-$('.btn-google-plus').click(googleButtonCallback);
+jQ('.btn-google-plus').click(googleButtonCallback);
+});
+
 
 function googleButtonCallback(){
 	var parameters = {
@@ -42,11 +46,11 @@ function signinCallback(authResult) {
 	   console.log('Num people visible:' + resp.totalItems);	   
 	 });
 	 request2.execute(function(resp) {
-	 	$('#so-username').val((resp.name.givenName).toString().toLowerCase() + '.' + (resp.name.familyName).toString().toLowerCase() + Math.ceil((Math.random()*10000)));
-        $('#so-fullname').val(resp.displayName);
-        $('#so-image-loc').val(resp.image.url);
-        $('#so-profile-url').val(resp.url);
-        $('#so-signup-method').val("Google+");
+	 	jQ('#so-username').val((resp.name.givenName).toString().toLowerCase() + '.' + (resp.name.familyName).toString().toLowerCase() + Math.ceil((Math.random()*10000)));
+        jQ('#so-fullname').val(resp.displayName);
+        jQ('#so-image-loc').val(resp.image.url);
+        jQ('#so-profile-url').val(resp.url);
+        jQ('#so-signup-method').val("Google+");
 
 	   console.log('ID: ' + resp.id);
 	   /*console.log('Display Name: ' + resp.displayName);
@@ -56,8 +60,8 @@ function signinCallback(authResult) {
 	   console.log('Email: ' + resp.email);*/
 	   gapi.client.load('oauth2', 'v2', function(){
 			gapi.client.oauth2.userinfo.get().execute(function(resp){			
-				$('#so-email').val(resp.email);
-				$('.form-sending-info').submit();
+				jQ('#so-email').val(resp.email);
+				jQ('.form-sending-info').submit();
 			});	
 		});
 

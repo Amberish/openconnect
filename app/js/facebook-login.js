@@ -1,3 +1,5 @@
+/*Use jQ in place of $*/
+jQuery(document).ready(function(jQ){
 window.fbAsyncInit = function() {
 FB.init({
   appId      : '219769758207290',
@@ -6,7 +8,7 @@ FB.init({
   xfbml      : true  // parse XFBML
 });
 
-$('.fa-login').click(function(){
+jQ('.fa-login').click(function(){
   FB.getLoginStatus(function(response){
     if (response.status === 'connected') {
       // the user is logged in and has authenticated your
@@ -47,19 +49,19 @@ function sigInAndGetUserInfo(){
           },
           function(response) {
             //Log.info('API Callback', response);
-            $('#so-username').val(response[0].username);
-            $('#so-fullname').val(response[0].name);
-            $('#so-email').val(response[0].email);
-            $('#so-profile-url').val(response[0].profile_url);
-            $('#so-image-loc').val(response[0].pic_square);
-            $('#so-signup-method').val("Facebook");
-            $('.form-sending-info').submit();
-            /*$('.fb-info-container').html(
+            jQ('#so-username').val(response[0].username);
+            jQ('#so-fullname').val(response[0].name);
+            jQ('#so-email').val(response[0].email);
+            jQ('#so-profile-url').val(response[0].profile_url);
+            jQ('#so-image-loc').val(response[0].pic_square);
+            jQ('#so-signup-method').val("Facebook");
+            jQ('.form-sending-info').submit();
+            /*jQ('.fb-info-container').html(
               '<img src="' + response[0].pic_square + '"> ' +
               response[0].name + '<br>'  + response[0].email + response[0].username +
               ' <button class="btn" onclick="FB.logout()">Logout</button>'
             );*/
-            console.log($(response[0]));
+            console.log(jQ(response[0]));
           });
 
        } else {
@@ -74,3 +76,4 @@ function testAPI() {
   });
 }
 
+});

@@ -15,7 +15,7 @@
 			<div class="col-md-4 login-form well">
 				<h2>Sign Up</h2>
 				<hr>
-				<form method="POST">
+				<form method="POST" name="signup-form">
 					
 					<input type="text" name="fullname" id="input-fullname" placeholder="Fullname" class="form-control">
 					<br>
@@ -29,11 +29,11 @@
 					<input type="password" name="password" id="input-password" placeholder="Password" class="form-control">
 					<br>
 					
-					<input type="text" name="confirm_password" id="input-confirm-password" placeholder="Confirm Password" class="form-control">
+					<input type="password" name="confirm_password" id="input-confirm-password" placeholder="Confirm Password" class="form-control">
 					<br>
-					<input type="checkbox" name="terms-and-condition" > I agree the <a href="#">Terms and Services</a>
+					<input type="checkbox" name="terms-and-condition" id="input-terms-and-condition"> I agree the <a href="#">Terms and Services</a>
 					<br><br>
-					<input type="submit" value="Sign Up" class="btn btn-success btn-block"> 
+					<input type="submit" value="Sign Up" id="sign-up" class="btn btn-success btn-block"> 
 					<br><br>
 				</form>
 			</div>
@@ -55,12 +55,20 @@
 				<button class="btn btn-google-plus btn-md"><i class="fa fa-google-plus"></i> | Connect with Google Plus</button>
 			    <script type="text/javascript" src="<?php echo JS;?>/google-plus-login.js"></script>
 				<!-- End Google Button Scripts -->
+				<br><br><br><br>
 
-				<!-- Facebook Output container -->
-				<div class="fb-info-container">
-					
+				<div class="col-md-2"></div>
+				<div class="alert alert-warning text-left col-md-8">
+				<small>
+					<p>Follow the instruction below for registration:</p>
+					<ul>
+						<li>Fullname can contain <strong>alphabets</strong> and <strong>spaces</strong>.</li>
+						<li>Username can contain <strong>alphabets, numbers</strong> and <strong>.(period or dot)</strong>.</li>
+						<li>Email must be a valid email address, like <strong>example@example.com</strong></li>
+						<li>Password must be 8-15 characters.</li>
+					</ul>
+				</small>
 				</div>
-				<!-- End Facebook Output Container -->
 				
 				<form class="form-sending-info" method="POST" action="<?php echo WEB_ROOT;?>/signup-third-party/">
 					<input type="hidden" value="" id="so-username" name="username">
